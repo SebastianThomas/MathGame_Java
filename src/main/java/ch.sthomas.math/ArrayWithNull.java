@@ -1,7 +1,6 @@
-package com.mathEasy;
+package ch.sthomas.math;
 
-public class ArrayWithNull
-{
+public class ArrayWithNull {
     public static GameCategories.Categories[] unnull(final GameCategories.Categories[] a) {
         int newRequiredSpaceInArray = 0;
         for (final GameCategories.Categories c : a) {

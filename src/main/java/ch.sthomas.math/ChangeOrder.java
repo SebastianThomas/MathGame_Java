@@ -1,17 +1,13 @@
-package com.mathEasy;
+package ch.sthomas.math;
 
+import javax.swing.*;
 import java.util.Collection;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.HashMap;
-import java.awt.Component;
-import javax.swing.JOptionPane;
-import javax.swing.JFrame;
 
-public interface ChangeOrder
-{
-    default Player[] changeOrder(Player[] players, final JFrame jframe) {
+public abstract class ChangeOrder {
+    public static Player[] changeOrder(Player[] players, final JFrame jframe) {
         final int changeOrderTrue = JOptionPane.showConfirmDialog(jframe, "Willst du die Reihenfolge \u00e4ndern?");
         if (changeOrderTrue == 0) {
             int newPlayerNr = 0;
@@ -26,14 +22,12 @@ public interface ChangeOrder
                             throw new NumberFormatException();
                         }
                         player.setPlayerNr(newPlayerNr);
-                    }
-                    catch (NumberFormatException e2) {
+                    } catch (NumberFormatException e2) {
                         JOptionPane.showMessageDialog(jframe, String.valueOf(newPlayerNr) + " ist keine g\u00fcltige (!!!) Ganzzahl. ");
                         System.exit(1);
                     }
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             final Map<Integer, Player> playersMap = new HashMap<Integer, Player>();
@@ -44,7 +38,8 @@ public interface ChangeOrder
             }
             final Map<Integer, Player> sortedPlayersMap = new TreeMap<Integer, Player>();
             sortedPlayersMap.putAll(playersMap);
-            for (Player player4 : sortedPlayersMap.values()) {}
+            for (Player player4 : sortedPlayersMap.values()) {
+            }
             final Collection<Player> playersCollection = sortedPlayersMap.values();
             players = playersCollection.toArray(new Player[playersCollection.size()]);
             Player[] array3;
@@ -63,8 +58,7 @@ public interface ChangeOrder
                     }
                 }
             }
-        }
-        else if (changeOrderTrue == 1) {
+        } else if (changeOrderTrue == 1) {
             JOptionPane.showMessageDialog(jframe, "OK. Then let's continue! ");
         }
         for (int iFor = 0; iFor < players.length; ++iFor) {
